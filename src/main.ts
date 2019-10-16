@@ -1,18 +1,29 @@
 import * as core from '@actions/core';
-import {wait} from './wait'
+import * as github from '@actions/github';
 
-async function run() {
+export async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    console.log(`Waiting ${ms} milliseconds ...`)
+    const welcomeMessage = core.getInput('welcome-message', { required: true }),
+      repoToken = core.getInput('repo-token', { required: true }),
+      issue: { owner: string; repo: string; number: number } = github.context.issue
 
-    core.debug((new Date()).toTimeString())
-    await wait(parseInt(ms, 10));
-    core.debug((new Date()).toTimeString())
+    if (github.context.payload.action !== 'opened') {
+      console.log('No issue or pull request was opened, skipping');
+      return;
+    }
 
-    core.setOutput('time', new Date().toTimeString());
-  } catch (error) {
+    const client: github.GitHub = new github.GitHub(repoToken);
+    await client.issues.createComment({
+      owner: issue.owner,
+      repo: issue.repo,
+      issue_number: issue.number,
+      body: welcomeMessage
+    });
+
+  }
+  catch (error) {
     core.setFailed(error.message);
+    throw error;
   }
 }
 

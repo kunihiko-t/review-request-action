@@ -17,4 +17,4 @@ jobs:
       with:
         repo-token: ${{ secrets.TOKEN }}
         welcome-message: "Hi"
-        user-names: []
+        user-names: ""

@@ -1,8 +1,9 @@
 name: "Test typescript-action"
 on:
   pull_request:
-  issue:
-
+    types: [opened]
+  issues:
+    types: [opened]
 jobs:
   test:
     runs-on: ubuntu-latest

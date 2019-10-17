@@ -1,7 +1,7 @@
 # Github-Review-Request-Action
 [![Actions Status](https://github.com/kunihiko-t/review-request-action/workflows/Test/badge.svg)](https://github.com/kunihiko-t/review-request-action/actions)
 
-Make Review Requests
+Send Review Requests
 
 ## Usage
 
@@ -15,7 +15,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: kunihiko-t/review-request-action@master
+    - name: "Send Review Request"
+      if: github.actor == 'kunihiko-t'
+      uses: kunihiko-t/review-request-action@master
       with:
         repo-token: ${{ secrets.TOKEN }}
         reviewers: "valletta-io"

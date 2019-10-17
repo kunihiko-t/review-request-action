@@ -16,6 +16,6 @@ jobs:
     - uses: ./
       with:
         repo-token: ${{ secrets.TOKEN }}
-        welcome-message: "Hi"
-        user-names: ""
+        reviewers: "valletta-io"
+        team-reviewers: ""
 

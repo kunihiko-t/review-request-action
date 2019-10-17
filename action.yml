@@ -8,9 +8,13 @@ inputs:
   repo-token:
     description: "Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}"
     required: true
-  user-name:
-    description: "user names for the review request"
-    required: true
+  reviewers:
+    description: "user names csv"
+    required: false
+  team-reviewers:
+    description: "team names csv"
+    required: false
+
 runs:
   using: 'node12'
   main: 'lib/main.js'

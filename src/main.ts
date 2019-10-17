@@ -3,26 +3,29 @@ import { context, GitHub } from '@actions/github'
 
 export async function run() {
   try {
-    const welcomeMessage = core.getInput('welcome-message', { required: true }),
+    const
       repoToken = core.getInput('repo-token', { required: true }),
       issue: { owner: string; repo: string; number: number } = context.issue
 
     if (context.payload.action !== 'opened') {
-      console.log('No issue or pull request was opened, skipping')
+      console.log('No pull request was opened, skipping')
       return
     }
 
     const client = new GitHub(repoToken)
-    await client.issues.createComment({
-      owner: issue.owner,
-      repo: issue.repo,
-      issue_number: issue.number,
-      body: welcomeMessage
-    })
 
-    // await client.pulls.createReviewRequest(
-    //
-    // )
+    const reviewers = core.getInput('reviewers').split(',').map(a => a.trim())
+    const teamReviewers = core.getInput('team-reviewers').split(',').map(a => a.trim())
+
+    await client.pulls.createReviewRequest(
+      {
+        owner: issue.owner,
+        repo: issue.repo,
+        pull_number: issue.number,
+        reviewers: reviewers,
+        team_reviewers: teamReviewers
+      }
+    )
 
   } catch (error) {
     core.setFailed(error.message)

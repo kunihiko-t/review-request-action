@@ -1,5 +1,6 @@
 # Github-Review-Request-Action
 [![Actions Status](https://github.com/kunihiko-t/review-request-action/workflows/Test/badge.svg)](https://github.com/kunihiko-t/review-request-action/actions)
+
 Make Review Requests
 
 ## Usage

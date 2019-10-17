@@ -1,6 +1,7 @@
 name: 'Review Request Action'
 description: 'Send review requests to users & teams'
 author: 'Kunihiko Tanaka'
+color: "red"
 inputs:
   repo-token:
     description: "Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}"

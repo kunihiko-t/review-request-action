@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: "Send Review Request 1"
       if: github.actor == 'kunihiko-t'
-      uses: kunihiko-t/review-request-action@v0.1.1
+      uses: kunihiko-t/review-request-action@v0.1.3
       with:
         repo-token: ${{ secrets.TOKEN }}
         reviewers: "valletta-io"

@@ -2,8 +2,6 @@ name: "Test"
 on:
   pull_request:
     types: [opened]
-  issues:
-    types: [opened]
 jobs:
   test:
     runs-on: ubuntu-latest

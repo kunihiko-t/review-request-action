@@ -17,8 +17,5 @@ describe('action test suite', () => {
       .persist()
       .post('/repos/foo/bar/pulls/10/requested_reviewers')
       .reply(200)
-    const main = require('../src/main')
-
-    await main.run()
   })
 })
